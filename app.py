@@ -1,5 +1,5 @@
 from flask import Flask
-import os, subprocess
+import os
 from datetime import datetime
 import pytz
 
