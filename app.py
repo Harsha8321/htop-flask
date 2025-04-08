@@ -1,0 +1,34 @@
+from flask import Flask
+import os, subprocess
+from datetime import datetime
+import pytz
+
+app = Flask(__name__)
+
+@app.route('/'
+def htop():
+    name = "Harshan N"
+    
+    try:
+        user = os.getlogin()
+    except:
+        user = "codespace"
+
+    ist = pytz.timezone('Asia/Kolkata')
+    time_ist = datetime.now(ist).strftime('%Y-%m-%d %H:%M:%S %Z')
+
+    try:
+        top_output = subprocess.check_output("top -b -n 1", shell=True).decode()
+    except:
+        top_output = "Unable to fetch top output."
+
+    return f"""
+    Name: {name}<br>
+    User: {user}<br>
+    Server Time (IST): {time_ist}<br><br>
+    TOP output:<br>
+    <pre>{top_output}</pre>
+    """
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
