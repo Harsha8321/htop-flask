@@ -17,11 +17,6 @@ def htop():
     ist = pytz.timezone('Asia/Kolkata')
     time_ist = datetime.now(ist).strftime('%Y-%m-%d %H:%M:%S %Z')
 
-    try:
-        top_output = subprocess.check_output("top -b -n 1", shell=True).decode()
-    except:
-        top_output = "Unable to fetch top output."
-
     return f"""
     Name: {name}<br>
     User: {user}<br>
